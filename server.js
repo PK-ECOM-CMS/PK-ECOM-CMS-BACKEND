@@ -37,7 +37,13 @@ app.use("/api/v1/items", adminAuth, itemRouter);
 app.use("/api/v1/orders", adminAuth, orderRouter);
 app.use("/api/v1/reviews", adminAuth, reviewRouter);
 app.use("/api/v1/users", adminAuth, ueserRouter);
-
+app.use("/", (req, res, next) => {
+  res.json({
+    status: "success",
+    message: "You hit the server root",
+  });
+  next(error);
+});
 app.use((error, req, res, next) => {
   console.log(error);
   const statusCode = error.status || 404;
