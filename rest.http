@@ -1,0 +1,151 @@
+### check server status
+GET http://localhost:8000
+
+#======== Admin API
+###post new admin user
+POST http://localhost:8000/api/v1/admin-user
+Content-Type: application/json
+
+{
+    "firstName":"Pradeep",
+    "lastName":"Dhital",
+    "email":"pradeepdhital@gmail.com",
+    "phone":"0451644397",
+    "dob":"03/09/1999",
+    "address":"1-3 Clarence Street Strathfield NSW 2135",
+    "password":"Pradeep"
+}
+
+###login
+POST http://localhost:8000/api/v1/admin-user/login
+Content-Type: application/json
+
+{ 
+    "email":"pradeepdhital@gmail.com",
+    "password":"Pradeep"
+}
+#============= categories action
+### get new access JWT
+GET http://localhost:8000/api/v1/admin-user/accessjwt
+
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByYWRlZXBkaGl0YWwwMDFAZ21haWwuY29tIiwiaWF0IjoxNjgzNDE3NTcwLCJleHAiOjE2ODM0MTg0NzB9.M0nsg3_8bnKEMG1hKEJAUCgg4YN-zPnzy6aEX3CA_LI
+
+
+### request otp for password reset
+POST http://localhost:8000/api/v1/admin-user/request-pw-reset-otp
+Content-Type: application/json
+
+{
+"email": "pradeepdhital001@gmail.com"
+}
+
+### posting categories
+
+POST http://localhost:8000/api/v1/categories
+Content-Type: application/json
+
+{
+"status":"active",
+"name":"ipads",
+"parentId":"dfdfs434"
+}
+
+
+### get categories
+
+GET http://localhost:8000/api/v1/categories
+
+### get categories with authorization
+GET http://localhost:8000/api/v1/categories
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByYWRlZXBkaGl0YWwwMDFAZ21haWwuY29tIiwiaWF0IjoxNjgzNDE3NTcwLCJleHAiOjE2ODM0MTg0NzB9.M0nsg3_8bnKEMG1hKEJAUCgg4YN-zPnzy6aEX3CA_LI
+
+
+### delete category
+
+Delete http://localhost:8000/api/v1/categories/6451c060e3e102740b4f7e99
+
+
+##  ================ Mine  darling ==================================================================
+
+### posting products
+
+POST http://localhost:8000/api/v1/product
+Content-Type: application/json
+
+{
+"status":"active",
+"name":"Miley chipstick",
+"parentId":"649b9551c1b1aeaef29dd3b4"
+}
+
+
+### get products
+
+GET http://localhost:8000/api/v1/product
+
+##============Above is mine===========================
+
+#======= payment methods
+### Get paymentmethods
+GET http://localhost:8000/api/v1/payment-methods
+
+
+### Post paymentmethods
+Post http://localhost:8000/api/v1/payment-methods
+Content-Type: application/json
+
+{   
+"status":"active",
+"name":"Pay by cash",
+"description":"Follow the instruction to pay by credit card"
+}
+
+### Update paymentmethods
+PUT http://localhost:8000/api/v1/payment-methods
+Content-Type: application/json
+
+{  
+"_id":"64619e8a18e02a1b87271907", 
+"status":"active",
+"name":"Pay by AMEX",
+"description":"Follow the instruction to pay by credit card"
+}
+
+### Delete paymentmethods
+DELETE http://localhost:8000/api/v1/payment-methods/64619e8a18e02a1b87271907
+
+
+
+#========================Product apis
+### get products
+GET http://localhost:8000/api/v1/items
+
+
+### post product
+Post http://localhost:8000/api/v1/items
+Content-Type: application/json
+
+{  
+"status":"active",
+"name":"Mac-okdd", 
+"sku":"mac-1dd",
+"description":"is a really nice laptop buddy", 
+"quantity":100,
+"price":3000,
+"salesPrice":0,
+"salesStartDate":null,
+"saleEndDate":null,
+"catId":"646024c627264517c478acee"
+}
+
+
+
+####===================   ORDER API =====================
+
+### get Orders
+Get http://localhost:8000/api/v1/orders
+
+####===================   Users API =====================
+
+### get Orders
+Get http://localhost:8000/api/v1/users
