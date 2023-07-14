@@ -19,14 +19,6 @@ const productsSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       require: true,
     },
-    // slug: {
-    //   type: String,
-    //   require: true,
-    //   unique: true,
-    //   index: 1,
-    //   maxLength: 50,
-    //   trim: true,
-    // },
   },
   { timestamps: true }
 );
