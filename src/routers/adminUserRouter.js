@@ -258,11 +258,11 @@ router.post("/login", loginValidation, async (req, res, next) => {
           user,
           ...jwts,
         });
-      }
+      } else res.json({ status: "error", message: "Password didn't match" });
     } else
-      res.json({
+    return  res.json({
         status: "error",
-        message: "invalid login credentials",
+        message: "There is no account registered on the email provided",
       });
   } catch (error) {
     next(error);
