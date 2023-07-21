@@ -52,7 +52,7 @@ router.get("/all-admins", adminAuth, async (req, res, next) => {
     const admins = await findAdminUsers();
     res.json({
       status: "success",
-      message: "to do",
+      message: "All admin users are returned",
       admins,
     });
   } catch (error) {}
@@ -259,11 +259,11 @@ router.post("/login", loginValidation, async (req, res, next) => {
           ...jwts,
         });
       }
-    }
-    res.json({
-      status: "error",
-      message: "invalid login credentials",
-    });
+    } else
+      res.json({
+        status: "error",
+        message: "invalid login credentials",
+      });
   } catch (error) {
     next(error);
   }
