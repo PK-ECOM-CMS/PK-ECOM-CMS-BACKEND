@@ -32,7 +32,7 @@ export const verificationEmail = (emailData) => {
     <p>Please follow the link to verify your email</p>
     <br/>
     <br/>
-    <p> <a href="${emailData.url}">Verify email</a></p>
+    <p><a href="${emailData.url}">Verify email</a></p>
     <br/>
     <br/>
     <p> 

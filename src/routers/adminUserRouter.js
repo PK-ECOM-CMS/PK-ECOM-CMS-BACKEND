@@ -77,7 +77,6 @@ router.post("/", newAdminUserValidation, async (req, res, next) => {
       // send email
       verificationEmail({
         firstName: user.firstName,
-        lastName: user.lastName,
         email: user.email,
         url,
       });
