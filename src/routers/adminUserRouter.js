@@ -41,10 +41,12 @@ router.get("/", adminAuth, async (req, res, next) => {
     user.refreshJWT = undefined;
     res.json({
       status: "success",
-      message: "to do",
+      message: "user has been returned",
       user,
     });
-  } catch (error) {}
+  } catch (error) {
+    next(error);
+  }
 });
 // get all admin users
 router.get("/all-admins", adminAuth, async (req, res, next) => {

@@ -9,7 +9,7 @@ Content-Type: application/json
 {
     "firstName":"Pradeep",
     "lastName":"Dhital",
-    "email":"pradeepdhital@gmail.com",
+    "email":"pradeepdhitalll@gmail.com",
     "phone":"0451644397",
     "dob":"03/09/1999",
     "address":"1-3 Clarence Street Strathfield NSW 2135",
@@ -114,8 +114,6 @@ Content-Type: application/json
 ### Delete paymentmethods
 DELETE http://localhost:8000/api/v1/payment-methods/64619e8a18e02a1b87271907
 
-
-
 #========================Product apis
 ### get products
 GET http://localhost:8000/api/v1/items
@@ -138,10 +136,7 @@ Content-Type: application/json
 "catId":"646024c627264517c478acee"
 }
 
-
-
 ####===================   ORDER API =====================
-
 ### get Orders
 Get http://localhost:8000/api/v1/orders
 
