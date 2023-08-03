@@ -14,8 +14,8 @@ const categoriesSchema = new mongoose.Schema(
     slug: {
       type: String,
       require: true,
-      unique: true,
-      index: 1,
+      // unique: true,
+      // index: 1,
       maxLength: 50,
       trim: true,
     },
