@@ -100,16 +100,21 @@ router.delete("/:_id", async (req, res, next) => {
           "The category has products assigned, please delete them or re-assign them to other categories first.",
       });
     }
-    const result = await deleteCategoryById(_id);
-    result?._id
-      ? res.json({
-          status: "success",
-          message: "the category has been deleted",
-        })
-      : res.json({
-          status: "error",
-          message: "Unable to delete the category, please try again later",
-        });
+    // const result = await deleteCategoryById(_id);
+    // result?._id
+    //   ? res.json({
+    //       status: "success",
+    //       message: "the category has been deleted",
+    //     })
+    //   : res.json({
+    //       status: "error",
+    //       message: "Unable to delete the category, please try again later",
+    //     });
+    return res.json({
+      status: "error",
+      message:
+        "Unauthorised! Someone is deleting my work! Had to block it.",
+    });
   } catch (error) {
     next(error);
   }

@@ -69,22 +69,26 @@ router.delete("/:_id", async (req, res, next) => {
   try {
     const { _id } = req.params;
     // / delete the item from the database based on the given id
-    const item = await deleteItemById(_id);
-    const { images } = item;
-    if (images.length) {
-      for (const image of images) {
-        const response = await cloudinary.uploader.destroy(image.public_id);
-      }
-    }
-    item?._id
-      ? res.json({
-          status: "success",
-          message: "The item has been deleted successfully",
-        })
-      : res.json({
-          status: "error",
-          message: "Unable to delete the item",
-        });
+    // const item = await deleteItemById(_id);
+    // const { images } = item;
+    // if (images.length) {
+    //   for (const image of images) {
+    //     const response = await cloudinary.uploader.destroy(image.public_id);
+    //   }
+    // }
+    // item?._id
+    //   ? res.json({
+    //       status: "success",
+    //       message: "The item has been deleted successfully",
+    //     })
+    //   : res.json({
+    //       status: "error",
+    //       message: "Unable to delete the item",
+    //     });
+     return res.json({
+       status: "error",
+       message: "Unauthorised! Someone is deleting my work! Had to block it.",
+     });
   } catch (error) {
     error.status = 500;
   }
