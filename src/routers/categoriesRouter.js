@@ -113,7 +113,7 @@ router.delete("/:_id", async (req, res, next) => {
     return res.json({
       status: "error",
       message:
-        "Unauthorised! Someone is deleting my work! Had to block it.",
+        "Unauthorised! Someone is manipulating my work! Had to block it.",
     });
   } catch (error) {
     next(error);
