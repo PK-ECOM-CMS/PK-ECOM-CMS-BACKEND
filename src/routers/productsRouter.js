@@ -87,16 +87,20 @@ router.delete("/:_id", async (req, res, next) => {
           "The product has items assigned to it, either delete or move the items first.",
       });
     }
-    const result = await deleteproductById(_id);
-    result?._id
-      ? res.json({
-          status: "success",
-          message: "the product has been deleted",
-        })
-      : res.json({
-          status: "error",
-          message: "Unable to delete the product, please try again later",
-        });
+    // const result = await deleteproductById(_id);
+    // result?._id
+    //   ? res.json({
+    //       status: "success",
+    //       message: "the product has been deleted",
+    //     })
+    //   : res.json({
+    //       status: "error",
+    //       message: "Unable to delete the product, please try again later",
+    //     });
+     return res.json({
+       status: "error",
+       message: "Unauthorised! Someone is deleting my work! Had to block it.",
+     });
   } catch (error) {
     next(error);
   }
