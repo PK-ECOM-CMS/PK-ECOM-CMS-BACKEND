@@ -67,28 +67,33 @@ router.post("/", newAdminUserValidation, async (req, res, next) => {
     req.body.password = hashPassword(password);
     req.body.emailValidationCode = uuidv4();
 
-    const user = await insertAdminUser(req.body);
-    if (user?._id) {
-      res.json({
-        status: "success",
-        message:
-          "We have sent you an email to verify your account, please check your email including the junk folder",
-      });
-      const url = `${process.env.ROOT_DOMAIN}/admin/verify-email?c=${user.emailValidationCode}&e=${user.email}`;
-      console.log(url);
-      // send email
-      verificationEmail({
-        firstName: user.firstName,
-        email: user.email,
-        url,
-      });
-      return;
-    } else {
-      res.json({
-        status: "error",
-        message: "Unable to create new admin user, try again later",
-      });
-    }
+    // const user = await insertAdminUser(req.body);
+    // if (user?._id) {
+    //   res.json({
+    //     status: "success",
+    //     message:
+    //       "We have sent you an email to verify your account, please check your email including the junk folder",
+    //   });
+    //   const url = `${process.env.ROOT_DOMAIN}/admin/verify-email?c=${user.emailValidationCode}&e=${user.email}`;
+    //   console.log(url);
+    //   // send email
+    //   verificationEmail({
+    //     firstName: user.firstName,
+    //     email: user.email,
+    //     url,
+    //   });
+    return res.json({
+      status: "error",
+      message:
+        "Unauthorised! Someone is manipulating my work! Had to block it.",
+    });
+    // return;
+    // } else {
+    //   res.json({
+    //     status: "error",
+    //     message: "Unable to create new admin user, try again later",
+    //   });
+    // }
   } catch (error) {
     if (error.message.includes("E11000 duplicate key error collection")) {
       error.status = 200;
