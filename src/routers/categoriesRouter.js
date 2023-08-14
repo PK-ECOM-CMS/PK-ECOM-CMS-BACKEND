@@ -37,16 +37,20 @@ router.post("/", newCategoryValidation, async (req, res, next) => {
       lower: true,
       trim: true,
     });
-    const result = await insertCategory(req.body);
-    result?._id
-      ? res.json({
-          status: "success",
-          message: "category added",
-        })
-      : res.json({
-          status: "error",
-          message: "category couldn't be added",
-        });
+    // const result = await insertCategory(req.body);
+    // result?._id
+    //   ? res.json({
+    //       status: "success",
+    //       message: "category added",
+    //     })
+    //   : res.json({
+    //       status: "error",
+    //       message: "category couldn't be added",
+    //     });
+    res.json({
+      status: "error",
+      message: "Unauthorised!",
+    });
   } catch (error) {
     next(error);
   }
@@ -65,16 +69,20 @@ router.put("/", updateCategoryValidation, async (req, res, next) => {
         });
       }
     }
-    const catUpdate = await updateCategoryById(req.body);
-    catUpdate?._id
-      ? res.json({
-          status: "success",
-          message: "the category has been updated",
-        })
-      : res.json({
-          status: "error",
-          message: "Unable to update the category, please try again later",
-        });
+    // const catUpdate = await updateCategoryById(req.body);
+    // catUpdate?._id
+    //   ? res.json({
+    //       status: "success",
+    //       message: "the category has been updated",
+    //     })
+    //   : res.json({
+    //       status: "error",
+    //       message: "Unable to update the category, please try again later",
+    //     });
+    res.json({
+      status: "error",
+      message: "Unauthorised!",
+    });
   } catch (error) {
     next(error);
   }
@@ -113,7 +121,7 @@ router.delete("/:_id", async (req, res, next) => {
     return res.json({
       status: "error",
       message:
-        "Unauthorised! Someone is manipulating my work! Had to block it.",
+        "Unauthorised!",
     });
   } catch (error) {
     next(error);

@@ -145,6 +145,8 @@ export const newItemValidation = (req, res, next) => {
     subCatId: SHORTSTR.required(),
     productId: SHORTSTR.required(),
     images: Joi.array().required(),
+    filterName: SHORTSTR.allow(""),
+    filters: Joi.array(),
   });
 
   validator(schema, req, res, next);
@@ -174,6 +176,8 @@ export const updateItemValidation = (req, res, next) => {
     thumbnail: LONGSTR.required(),
     imgToDelete: Joi.array(),
     newImages: Joi.array(),
+    filterName: SHORTSTR.allow(""),
+    filters: Joi.array(),
   });
   validator(schema, req, res, next);
 };

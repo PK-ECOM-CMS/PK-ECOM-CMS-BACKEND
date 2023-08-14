@@ -138,16 +138,21 @@ router.put(
   async (req, res, next) => {
     try {
       const { _id, ...rest } = req.body;
-      const result = await updateOneAdminUser({ _id }, rest);
-      result?._id
-        ? res.json({
-            status: "success",
-            message: "profile updated successfully",
-          })
-        : res.json({
+      // const result = await updateOneAdminUser({ _id }, rest);
+      // result?._id
+      //   ? res.json({
+      //       status: "success",
+      //       message: "profile updated successfully",
+      //     })
+      //   : res.json({
+      //       status: "error",
+      //       message:
+      //         "The profile update was not successful, please try again later",
+      //     });
+      res.json({
             status: "error",
             message:
-              "The profile update was not successful, please try again later",
+              "Unauthorised",
           });
     } catch (error) {
       next(error);
