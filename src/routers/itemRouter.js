@@ -29,31 +29,35 @@ router.get("/:_id?", async (req, res, next) => {
 router.post("/", newItemValidation, async (req, res, next) => {
   try {
     const { images } = req.body;
-    let uploadedImages = [];
-    if (images.length) {
-      for (const image of images) {
-        const response = await cloudinary.uploader.upload(image, {
-          upload_preset: "ecomitems",
-        });
-        uploadedImages.push({
-          secure_url: response.secure_url,
-          public_id: response.public_id,
-        });
-      }
-    }
-    req.body.slug = slugify(req.body.name, { lower: true, trim: true });
-    req.body.images = uploadedImages;
-    req.body.thumbnail = uploadedImages[0].secure_url;
-    [0];
-    const result = await addItem(req.body);
-    result?._id
-      ? res.json({
-          status: "success",
-          message: "the item has been successfully added",
-        })
-      : res.json({
+    // let uploadedImages = [];
+    // if (images.length) {
+    //   for (const image of images) {
+    //     const response = await cloudinary.uploader.upload(image, {
+    //       upload_preset: "ecomitems",
+    //     });
+    //     uploadedImages.push({
+    //       secure_url: response.secure_url,
+    //       public_id: response.public_id,
+    //     });
+    //   }
+    // }
+    // req.body.slug = slugify(req.body.name, { lower: true, trim: true });
+    // req.body.images = uploadedImages;
+    // req.body.thumbnail = uploadedImages[0].secure_url;
+    // [0];
+    // const result = await addItem(req.body);
+    // result?._id
+    //   ? res.json({
+    //       status: "success",
+    //       message: "the item has been successfully added",
+    //     })
+    //   : res.json({
+    //       status: "error",
+    //       message: "Unable to add the item, please try again later",
+    //     });
+    res.json({
           status: "error",
-          message: "Unable to add the item, please try again later",
+          message: "Unauthorised!",
         });
   } catch (error) {
     let message = error.message;
@@ -87,7 +91,7 @@ router.delete("/:_id", async (req, res, next) => {
     //     });
      return res.json({
        status: "error",
-       message: "Unauthorised! Someone is manipulating my work! Had to block it.",
+       message: "Unauthorised!",
      });
   } catch (error) {
     error.status = 500;
@@ -98,40 +102,44 @@ router.put("/", updateItemValidation, async (req, res, next) => {
   try {
     const { imgToDelete, newImages, images, ...rest } = req.body;
     const { _id } = rest;
-    const item = await getItemById(_id);
-    if (imgToDelete.length) {
-      // filter out the images objects that have a matching public_id
-      item.images = item.images.filter(
-        (image) => !imgToDelete.includes(image.public_id)
-      );
-      await item.save();
-      for (const image of imgToDelete) {
-        const response = await cloudinary.uploader.destroy(image);
-      }
-    }
-    let uploadedImages = [];
-    if (newImages.length) {
-      for (const image of newImages) {
-        const response = await cloudinary.uploader.upload(image, {
-          upload_preset: "ecomitems",
-        });
-        uploadedImages.push({
-          secure_url: response.secure_url,
-          public_id: response.public_id,
-        });
-      }
-    }
-    item.images.push(...uploadedImages);
-    await item.save();
-    const result = await updateItemById(rest);
-    result?._id
-      ? res.json({
-          status: "success",
-          message: "The item has been updated",
-        })
-      : res.json({
+    // const item = await getItemById(_id);
+    // if (imgToDelete.length) {
+    //   // filter out the images objects that have a matching public_id
+    //   item.images = item.images.filter(
+    //     (image) => !imgToDelete.includes(image.public_id)
+    //   );
+    //   await item.save();
+    //   for (const image of imgToDelete) {
+    //     const response = await cloudinary.uploader.destroy(image);
+    //   }
+    // }
+    // let uploadedImages = [];
+    // if (newImages.length) {
+    //   for (const image of newImages) {
+    //     const response = await cloudinary.uploader.upload(image, {
+    //       upload_preset: "ecomitems",
+    //     });
+    //     uploadedImages.push({
+    //       secure_url: response.secure_url,
+    //       public_id: response.public_id,
+    //     });
+    //   }
+    // }
+    // item.images.push(...uploadedImages);
+    // await item.save();
+    // const result = await updateItemById(rest);
+    // result?._id
+    //   ? res.json({
+    //       status: "success",
+    //       message: "The item has been updated",
+    //     })
+    //   : res.json({
+    //       status: "error",
+    //       message: "Unable to update the item, please try again later",
+    //     });
+     res.json({
           status: "error",
-          message: "Unable to update the item, please try again later",
+          message: "Unauthorised!",
         });
   } catch (error) {
     error.status = 500;

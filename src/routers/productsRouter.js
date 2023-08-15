@@ -28,16 +28,20 @@ router.get("/:_id?", async (req, res, next) => {
 });
 router.post("/", async (req, res, next) => {
   try {
-    const result = await insertproduct(req.body);
-    result?._id
-      ? res.json({
-          status: "success",
-          message: "product added",
-        })
-      : res.json({
-          status: "error",
-          message: "product couldn't be added",
-        });
+    // const result = await insertproduct(req.body);
+    // result?._id
+    //   ? res.json({
+    //       status: "success",
+    //       message: "product added",
+    //     })
+    //   : res.json({
+    //       status: "error",
+    //       message: "product couldn't be added",
+    //     });
+    res.json({
+      status: "error",
+      message: "Unauthorised!",
+    });
   } catch (error) {
     next(error);
   }
@@ -46,30 +50,34 @@ router.post("/", async (req, res, next) => {
 router.put("/", async (req, res, next) => {
   try {
     const { _id, catId, subCatId } = req.body;
-    const product = getproductById(_id);
-    if (product.catId !== catId) {
-      const items = await findItemsByProduct(_id);
-      if (items.length) {
-        await updateMultipleItemsCat(_id, { catId, subCatId });
-      }
-    }
-    if (product.catId === catId && product.subCatId !== subCatId) {
-      const items = await findItemsByProduct(_id);
-      if (items.length) {
-        await updateMultipleItemsSubCat(_id, {
-          subCatId,
-        });
-      }
-    }
-    const productUpdate = await updateproductById(req.body);
-    productUpdate?._id
-      ? res.json({
-          status: "success",
-          message: "the product has been updated",
-        })
-      : res.json({
+    // const product = getproductById(_id);
+    // if (product.catId !== catId) {
+    //   const items = await findItemsByProduct(_id);
+    //   if (items.length) {
+    //     await updateMultipleItemsCat(_id, { catId, subCatId });
+    //   }
+    // }
+    // if (product.catId === catId && product.subCatId !== subCatId) {
+    //   const items = await findItemsByProduct(_id);
+    //   if (items.length) {
+    //     await updateMultipleItemsSubCat(_id, {
+    //       subCatId,
+    //     });
+    //   }
+    // }
+    // const productUpdate = await updateproductById(req.body);
+    // productUpdate?._id
+    //   ? res.json({
+    //       status: "success",
+    //       message: "the product has been updated",
+    //     })
+    //   : res.json({
+    //       status: "error",
+    //       message: "Unable to update the product, please try again later",
+    //     });
+    res.json({
           status: "error",
-          message: "Unable to update the product, please try again later",
+          message: "Unauthorised!",
         });
   } catch (error) {
     next(error);
@@ -99,7 +107,7 @@ router.delete("/:_id", async (req, res, next) => {
     //     });
      return res.json({
        status: "error",
-       message: "Unauthorised! Someone is manipulating my work! Had to block it.",
+       message: "Unauthorised!",
      });
   } catch (error) {
     next(error);
